@@ -14,14 +14,9 @@ export class DashboardComponent implements OnInit {
   doc: any = [];
   sideNavMenuData: any = [];
  
-  panelOpenState = false;
+  panelOpenState = true;
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.options.filter(
-      option => option.toLowerCase().indexOf(filterValue) === 0
-    );
-  }
+ 
   constructor() {
     this.doc = docData.document;
   }

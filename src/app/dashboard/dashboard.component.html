@@ -23,8 +23,17 @@
 						</mat-panel-description>
              
 					</mat-expansion-panel-header>
-					<p>I'm visible because I am open</p>
+         
+          <div style="padding:10px 2px;cursor:pointer;text-align:justify;" matRipple *ngFor="let sub of item.subMenu">
+            <span>{{sub.header}}
+            </span>
+            </div>
+
+          <!-- <mat-action-row>
+            <mat-hint>Last updated {{}}</mat-hint>
+          </mat-action-row> -->
 				</mat-expansion-panel>
+       
 			</mat-accordion>
 
 		</ng-container>

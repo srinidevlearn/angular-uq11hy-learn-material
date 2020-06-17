@@ -3,6 +3,8 @@
 </div>
 <!-- <div class="grid"> -->
 
+  <mat-grid-list cols="2" rowHeight="2:1">
+
 	<ng-container *ngFor="let item of sideNavMenuData">
 
 		<ng-container *ngIf="item.hasSubMenu == false">
@@ -32,4 +34,5 @@
 
 	</ng-container>
 
+  </mat-grid-list>
 <!-- </div> -->

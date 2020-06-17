@@ -1,0 +1,17 @@
+:host{
+  box-sizing: border-box;
+}
+.grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap : 1.4rem 1.5rem;
+  padding: 1.5rem;
+  background: white;
+}
+
+.card-container{
+  padding:1rem;
+  background: white;
+  max-height: 20px;
+  cursor: pointer;
+}

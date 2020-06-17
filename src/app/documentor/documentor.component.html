@@ -1,0 +1,107 @@
+<mat-toolbar color="primary">
+	<button type="button" mat-button (click)="drawer.toggle()">
+
+          <mat-icon class="mat-icon-rtl-mirror">
+            menu_book
+          </mat-icon>
+          <span class="mat-h2"> &nbsp;Documentor </span>
+        </button>
+	<span class="example-spacer"></span>
+
+	<!-- <mat-form-field class="search" appearance="outline" [color]="accent">
+		<mat-label> <span class="material-icons" style="font-size:14px;">search</span>
+			<span style="position:relative;top:-2px;">&nbsp;Search</span></mat-label> -->
+      <form >
+		<input id="search" matInput type="text" [matAutocomplete]="auto"  [formControl]="apiFinder">
+    <button  mat-icon-button class="close"> <mat-icon>close</mat-icon></button>
+		<mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+			<mat-option *ngFor="let option of filteredOptions | async" [value]="option.header" (click)="optionSelected(option)">
+				{{option.header}}
+			</mat-option>
+		</mat-autocomplete>
+      </form>
+   <!-- <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+    <mat-icon>close</mat-icon>
+  </button>
+
+	</mat-form-field> -->
+
+</mat-toolbar>
+
+<mat-sidenav-container class="doc-container" autosize>
+	<mat-sidenav #drawer class="doc-sidenav" mode="side" opened [fixedInViewport]="true" [fixedTopGap]="65">
+		<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="doc-tree">
+			<!-- This is the tree node template for leaf nodes -->
+			<mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+				<li class="mat-tree-node">
+					<!-- use a disabled button to provide padding for tree leaf -->
+					<!-- <button type="button" mat-icon-button disabled></button> -->
+
+					<div class="doc-ripple-container" matRipple
+						[class.primaryColor]="node.level == level && selectedOperation == node.header.toLowerCase()"
+						(click)="nodeItem(node)">
+						{{node.header}}
+					</div>
+
+					<!-- <button type="button" class="full" [class.primaryColor]="node.level == level && selectedOperation == node.header.toLowerCase()" (click)="nodeItem(node)" mat-button style="text-align:left;">{{node.header}}</button> -->
+				</li>
+
+			</mat-tree-node>
+
+			<!-- This is the tree node template for expandable nodes -->
+
+			<mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+				<li>
+
+
+					<div class="mat-tree-node">
+
+						<div class="doc-ripple-container" matRipple matTreeNodeToggle
+							[attr.aria-label]="'toggle ' + node.header" (click)="nodeItem(node)"
+							[class.primaryColor]="node.level == level">
+							<span>{{node.header}}</span>
+							<mat-icon class="mat-icon-rtl-mirror">
+								{{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+							</mat-icon>
+						</div>
+
+
+						<!-- <button type="button" mat-button matTreeNodeToggle class="full menu-btn" (click)="nodeItem(node)" [class.primaryColor]="node.level == level"
+                [attr.aria-label]="'toggle ' + node.header">
+                          	<span>{{node.header}}</span>
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+
+        </button> -->
+
+					</div>
+					<ul [class.doc-tree-invisible]="!treeControl.isExpanded(node)">
+						<ng-container matTreeNodeOutlet></ng-container>
+					</ul>
+				</li>
+			</mat-nested-tree-node>
+		</mat-tree>
+
+
+	</mat-sidenav>
+	<mat-sidenav-content>
+		<div class="doc-sidenav-content">
+
+			<ng-container *ngIf="dashboard == true">
+				<app-dashboard></app-dashboard>
+			</ng-container>
+
+			<ng-container *ngIf="dashboard == false">
+
+				<app-documentation [getDocData]="getSubMenuChoosedItem"></app-documentation>
+
+			</ng-container>
+
+			<div>
+
+			</div>
+		</div>
+	</mat-sidenav-content>
+
+</mat-sidenav-container>

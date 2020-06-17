@@ -1,0 +1,122 @@
+p {
+     font-family: Lato;
+}
+ mat-toolbar{
+     position: fixed;
+     top: 0;
+     left: 0;
+     right: 0;
+     z-index: 100;
+}
+ .doc-container {
+     width: 100%;
+     min-width:35%;
+     height: auto;
+    /* border: 1px solid rgba(0, 0, 0, 0.5);
+     */
+}
+ .menu-btn{
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     width: 100%;
+}
+ .doc-ripple-container {
+     cursor: pointer;
+     text-align: left;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     width: 100%;
+    /* height: 300px;
+     */
+     line-height: 50px;
+     user-select: none;
+     -webkit-user-select: none;
+     -moz-user-select: none;
+     -ms-user-select: none;
+     -webkit-user-drag: none;
+     -webkit-tap-highlight-color: transparent;
+     padding:0px 20px;
+}
+ .doc-sidenav-content {
+     display: grid;
+     height: 100%;
+    
+   
+     margin-top:65px;
+     /* padding-left: 0.5rem;
+     padding-right: 0.5rem; */
+
+}
+ .doc-sidenav {
+    /* padding:0.5rem 2.2rem;
+     */
+     width:250px;
+}
+ .full{
+     width:100%;
+     padding: 5px 12px;
+     font-size: 0.8rem;
+     text-align: left;
+}
+/* .full:focus{
+     color:#3f51b5;
+}
+ .full .sub:focus{
+     color:#3f51b5;
+}
+ */
+ .doc-tree-invisible {
+     display: none;
+}
+ .primaryColor{
+     color:#3f51b5;
+}
+ .doc-tree ul, .doc-tree li {
+     margin-top: 0;
+     margin-bottom: 0;
+    /* justify-content: flex-start;
+     */
+     list-style-type: none;
+    /* background: #a3bffa */
+}
+/* width */
+ doc-container::-webkit-scrollbar {
+     width: 10px;
+}
+/* Track */
+ doc-container::-webkit-scrollbar-track {
+     background: #f1f1f1;
+}
+/* Handle */
+ doc-container::-webkit-scrollbar-thumb {
+     background: #888;
+}
+/* Handle on hover */
+ doc-container::-webkit-scrollbar-thumb:hover {
+     background: #555;
+}
+ .example-spacer {
+  flex: 1 1 auto;
+}
+input:focus{
+  outline: 0;
+}
+#search{
+
+      font-size: 15px;
+    margin-top: 5px;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    width: 125px;
+    border: 1px solid white;
+
+}
+
+.close{
+  margin-left:-35px;
+  color:black;
+  z-index: 999;
+}

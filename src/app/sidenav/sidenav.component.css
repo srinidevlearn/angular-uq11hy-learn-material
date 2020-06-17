@@ -1,0 +1,35 @@
+p {
+  font-family: Lato;
+}
+.doc-container {
+  width: 100%;
+  min-width:35%;
+  height: 99vh;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.doc-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+.doc-sidenav {
+  /* padding: 2rem; */
+}
+
+.doc-tree-invisible {
+  display: none;
+}
+
+.doc-tree ul,
+.doc-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-right: 10px;
+  list-style-type: none;
+}
+
+ 

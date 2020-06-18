@@ -117,6 +117,9 @@ export class DocumentorComponent implements OnInit {
     // this.nodeItem({ header: "Dashboard", level: 0 });
 
   }
+  close(){
+    this.apiFinder.setValue('');
+  }
   nodeItem(node: any) {
 
     this.dashboard = false;

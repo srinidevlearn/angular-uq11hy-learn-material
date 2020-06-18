@@ -22,9 +22,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.renderMenu();
-
-  
+    this.renderMenu(); 
   }
 
   renderMenu() {
@@ -45,6 +43,6 @@ export class DashboardComponent implements OnInit {
       this.sideNavMenuData.push(header);
       index++;
     });
-    console.log(this.sideNavMenuData);
+    // console.log(this.sideNavMenuData);
   }
 }

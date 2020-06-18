@@ -13,7 +13,7 @@
 			<span style="position:relative;top:-2px;">&nbsp;Search</span></mat-label> -->
       <form >
 		<input id="search" matInput type="text" [matAutocomplete]="auto"  [formControl]="apiFinder">
-    <button  mat-icon-button class="close"> <mat-icon>close</mat-icon></button>
+    <button  mat-icon-button class="close"> <mat-icon (click)="close();">close</mat-icon></button>
 		<mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
 			<mat-option *ngFor="let option of filteredOptions | async" [value]="option.header" (click)="optionSelected(option)">
 				{{option.header}}

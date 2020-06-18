@@ -24,7 +24,7 @@
              
 					</mat-expansion-panel-header>
          
-          <div style="padding:10px 2px;cursor:pointer;text-align:justify;" matRipple *ngFor="let sub of item.subMenu">
+          <div style="padding:10px 2px;cursor:pointer;text-align:justify;" matRipple *ngFor="let sub of item.subMenu" (click)="sendData(sub)">
             <span>{{sub.header}}
             </span>
             </div>

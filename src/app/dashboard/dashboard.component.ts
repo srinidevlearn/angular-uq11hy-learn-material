@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit,Output,EventEmitter } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import * as docData from "../doc";
 
@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   sideNavMenuData: any = [];
  
   panelOpenState = true;
+  @Output() sendNode = new EventEmitter()
 
  
   constructor() {
@@ -23,6 +24,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.renderMenu(); 
+  }
+
+  sendData(node:any){
+    this.sendNode.emit(node);
   }
 
   renderMenu() {

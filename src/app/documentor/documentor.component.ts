@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit,ViewChild } from "@angular/core";
 import { NestedTreeControl } from "@angular/cdk/tree";
 import { MatTreeNestedDataSource } from "@angular/material/tree";
 import { Observable } from "rxjs";
@@ -33,6 +33,7 @@ export class DocumentorComponent implements OnInit {
 
   filteredOptions: Observable<string[]>;
   apiFinder = new FormControl();
+  @ViewChild('tree')tree :any;
 
   constructor() {
     this.doc = docData.document;
@@ -107,18 +108,24 @@ this.openEve = false;
     this.dataSource.data = this.sideNavMenuData;
   }
 
-  optionSelected(option:any){
+  optionSelected(option:any,flag?:string){
+    console.log(option)
     this.openEve = true;
     if(option.hasSubMenu == false){
       this.nodeItem({header:option.header,level:option.level})
     }else{
         this.nodeItem(option.subMenu[0]);
+      
+    }
+    if(flag == "fromHeader"){
+      this.tree.treeControl.collapseAll();
+      
         if(option.subMenu.length){
-          // console.log(this.treeControl.expand(2))
+      
+          this.tree.treeControl.expand(option)
         }
     }
-
-    console.log(option);
+   
     // this.nodeItem({ header: "Dashboard", level: 0 });
 
   }

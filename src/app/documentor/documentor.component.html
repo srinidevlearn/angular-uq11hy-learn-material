@@ -15,7 +15,7 @@
 		<input id="search" matInput type="text" [matAutocomplete]="auto"  [formControl]="apiFinder">
     <button  mat-icon-button class="close"> <mat-icon (click)="close();">close</mat-icon></button>
 		<mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-			<mat-option *ngFor="let option of filteredOptions | async" [value]="option.header" (click)="optionSelected(option)">
+			<mat-option *ngFor="let option of filteredOptions | async" [value]="option.header" (click)="optionSelected(option,'fromHeader')">
 				{{option.header}}
 			</mat-option>
 		</mat-autocomplete>
@@ -30,7 +30,7 @@
 
 <mat-sidenav-container class="doc-container" autosize>
 	<mat-sidenav #drawer class="doc-sidenav" mode="side" [opened]="openEve" [fixedInViewport]="true" [fixedTopGap]="65">
-		<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="doc-tree">
+		<mat-tree #tree [dataSource]="dataSource" [treeControl]="treeControl" class="doc-tree">
 			<!-- This is the tree node template for leaf nodes -->
 			<mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
 				<li class="mat-tree-node">

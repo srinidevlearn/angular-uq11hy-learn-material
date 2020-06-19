@@ -29,6 +29,7 @@ export class DocumentorComponent implements OnInit {
   getSubMenuChoosedItem: any = [];
   level: number;
   selectedOperation: string = "";
+  openEve:boolean = false;
 
   filteredOptions: Observable<string[]>;
   apiFinder = new FormControl();
@@ -44,6 +45,7 @@ export class DocumentorComponent implements OnInit {
       });
     }
 
+this.openEve = false;
     this.treeControl = new NestedTreeControl((node: any) => node.subMenu);
     this.dataSource = new MatTreeNestedDataSource();
     this.hasChild = (_: number, node: SideNavigation) =>
@@ -106,11 +108,14 @@ export class DocumentorComponent implements OnInit {
   }
 
   optionSelected(option:any){
-
+    this.openEve = true;
     if(option.hasSubMenu == false){
       this.nodeItem({header:option.header,level:option.level})
     }else{
         this.nodeItem(option.subMenu[0]);
+        if(option.subMenu.length){
+          // console.log(this.treeControl.expand(2))
+        }
     }
 
     console.log(option);

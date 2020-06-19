@@ -30,8 +30,8 @@ export class DocumentationComponent implements OnInit {
   describeData(){
     if(this._getDocData.choosen.length){
 
-      let paramVal = this._getDocData.choosen[0]['param']
-      console.log(paramVal);
+      // let paramVal = this._getDocData.choosen[0]['param']
+      // console.log(paramVal);
 
     }
 

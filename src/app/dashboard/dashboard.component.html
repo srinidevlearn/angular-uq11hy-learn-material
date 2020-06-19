@@ -6,7 +6,7 @@
 	<ng-container *ngFor="let item of sideNavMenuData">
 
 		<ng-container *ngIf="item.hasSubMenu == false">
-			<div matRipple class="card-container mat-elevation-z4 card-item">{{item.header}}</div>
+			<div matRipple class="card-container mat-elevation-z4 card-item" (click)="sendData(item)">{{item.header}}</div>
 
 		</ng-container>
 		<ng-container *ngIf="item.hasSubMenu == true">
@@ -24,9 +24,8 @@
              
 					</mat-expansion-panel-header>
          
-          <div style="padding:10px 2px;cursor:pointer;text-align:justify;" matRipple *ngFor="let sub of item.subMenu" (click)="sendData(sub)">
-            <span>{{sub.header}}
-            </span>
+          <div style="padding:10px 2px;cursor:pointer;text-align:justify;" matRipple *ngFor="let sub of item.subMenu" (click)="sendData({item:item,sub:sub})">
+            <span style="padding-left:10px;">{{sub.header}}</span>
             </div>
 
           <!-- <mat-action-row>

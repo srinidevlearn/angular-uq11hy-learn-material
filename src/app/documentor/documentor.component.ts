@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { NestedTreeControl } from "@angular/cdk/tree";
 import { MatTreeNestedDataSource } from "@angular/material/tree";
 import { Observable } from "rxjs";
@@ -29,11 +29,11 @@ export class DocumentorComponent implements OnInit {
   getSubMenuChoosedItem: any = [];
   level: number;
   selectedOperation: string = "";
-  openEve:boolean = false;
+  openEve: boolean = false;
 
   filteredOptions: Observable<string[]>;
   apiFinder = new FormControl();
-  @ViewChild('tree')tree :any;
+  @ViewChild("tree") tree: any;
 
   constructor() {
     this.doc = docData.document;
@@ -46,7 +46,7 @@ export class DocumentorComponent implements OnInit {
       });
     }
 
-this.openEve = false;
+    this.openEve = false;
     this.treeControl = new NestedTreeControl((node: any) => node.subMenu);
     this.dataSource = new MatTreeNestedDataSource();
     this.hasChild = (_: number, node: SideNavigation) =>
@@ -55,18 +55,43 @@ this.openEve = false;
   }
   ngOnInit() {
     this.nodeItem({ header: "Dashboard", level: 0 });
-
     this.filteredOptions = this.apiFinder.valueChanges.pipe(
       startWith(""),
       map(value => {
         const filterValue = value.toLowerCase();
         const option = this.sideNavMenuData;
         return option.filter(
-          (option:any)=> option['header'].toLowerCase().indexOf(filterValue) === 0
+          (option: any) =>
+            option["header"].toLowerCase().indexOf(filterValue) === 0
         );
       })
     );
     //(this.sideNavMenuData[0])
+  }
+  receiveNode(node: any) {
+    // this.openEve = true;
+    // this.nodeItem(node);
+
+    if ("item" in node && "sub" in node) {
+      // let nodeData:any = JSON.parse(JSON.stringify(node.item));
+      // nodeData.subMenu = [];
+      // nodeData.subMenu.push(node.sub);
+      //  const referenceToNode = this.sideNavMenuData.find((d:any) => d.submenu.level === node.sub.level)
+
+      let n = node.item.subMenu
+        .map(
+          (subm: any, index: number): any => {
+            if (subm.header.toLowerCase() == node.sub.header.toLowerCase())
+              return index;
+          }
+        )
+        .filter((i: any) => i != undefined);
+      // console.log(n);
+
+      this.optionSelected(node["item"], "fromHeader", n[0]);
+    } else {
+      this.optionSelected(node);
+    }
   }
 
   createSideNav() {
@@ -108,32 +133,32 @@ this.openEve = false;
     this.dataSource.data = this.sideNavMenuData;
   }
 
-  optionSelected(option:any,flag?:string){
-    console.log(option)
+  optionSelected(option: any, flag?: string, subMenuPos?: number) {
+    // console.log(option)
     this.openEve = true;
-    if(option.hasSubMenu == false){
-      this.nodeItem({header:option.header,level:option.level})
-    }else{
+    if (option.hasSubMenu == false) {
+      this.nodeItem({ header: option.header, level: option.level });
+    } else {
+      if (subMenuPos) {
+        this.nodeItem(option.subMenu[subMenuPos]);
+      } else {
         this.nodeItem(option.subMenu[0]);
-      
+      }
     }
-    if(flag == "fromHeader"){
+    if (flag == "fromHeader") {
       this.tree.treeControl.collapseAll();
-      
-        if(option.subMenu.length){
-      
-          this.tree.treeControl.expand(option)
-        }
-    }
-   
-    // this.nodeItem({ header: "Dashboard", level: 0 });
 
+      if (option.subMenu.length) {
+        this.tree.treeControl.expand(option);
+      }
+    }
+
+    // this.nodeItem({ header: "Dashboard", level: 0 });
   }
-  close(){
-    this.apiFinder.setValue('');
+  close() {
+    this.apiFinder.setValue("");
   }
   nodeItem(node: any) {
-
     this.dashboard = false;
     if (node.header.toLowerCase() == "dashboard") {
       this.dashboard = true;

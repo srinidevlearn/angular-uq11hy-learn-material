@@ -89,7 +89,7 @@
 		<div class="doc-sidenav-content">
 
 			<ng-container *ngIf="dashboard == true">
-				<app-dashboard></app-dashboard>
+				<app-dashboard (sendNode)="receiveNode($event)"></app-dashboard>
 			</ng-container>
 
 			<ng-container *ngIf="dashboard == false">

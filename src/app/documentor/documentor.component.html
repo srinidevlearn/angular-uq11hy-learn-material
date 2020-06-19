@@ -29,7 +29,7 @@
 </mat-toolbar>
 
 <mat-sidenav-container class="doc-container" autosize>
-	<mat-sidenav #drawer class="doc-sidenav" mode="side" [opened]="openEve" [fixedInViewport]="true" [fixedTopGap]="65">
+	<mat-sidenav #drawer class="doc-sidenav" mode="side" [opened]="true" [fixedInViewport]="true" [fixedTopGap]="65">
 		<mat-tree #tree [dataSource]="dataSource" [treeControl]="treeControl" class="doc-tree">
 			<!-- This is the tree node template for leaf nodes -->
 			<mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
@@ -57,7 +57,7 @@
 					<div class="mat-tree-node">
 
 						<div class="doc-ripple-container" matRipple matTreeNodeToggle
-							[attr.aria-label]="'toggle ' + node.header" (click)="nodeItem(node)"
+							[attr.aria-label]="'toggle ' + node.header" (click)="optionSelected(node)"
 							[class.primaryColor]="node.level == level">
 							<span>{{node.header}}</span>
 							<mat-icon class="mat-icon-rtl-mirror">

@@ -11,6 +11,7 @@ export class DocumentationComponent implements OnInit {
   showSpinner:boolean = false;
   lookUpFields: any = ["heading", "html", "description", "param"];
   tabularData:any=[];
+  heading:string = ""
 
   @Input("getDocData")
   set getDocData(value: any) {
@@ -18,8 +19,9 @@ export class DocumentationComponent implements OnInit {
     this.showSpinner = true;
     this.renderFlag = false;
     this._getDocData = value;
-     this.showSpinner = false;
-     this.renderFlag = true;
+    this.showSpinner = false;
+    this.renderFlag = true;
+    this.heading = this._getDocData.choosen[0]['heading']
   }
   constructor() {}
 
@@ -28,12 +30,7 @@ export class DocumentationComponent implements OnInit {
   }
 
   describeData(){
-    if(this._getDocData.choosen.length){
-
-      // let paramVal = this._getDocData.choosen[0]['param']
-      // console.log(paramVal);
-
-    }
+  
 
   }
 }

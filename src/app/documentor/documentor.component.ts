@@ -73,11 +73,6 @@ export class DocumentorComponent implements OnInit {
     // this.nodeItem(node);
 
     if ("item" in node && "sub" in node) {
-      // let nodeData:any = JSON.parse(JSON.stringify(node.item));
-      // nodeData.subMenu = [];
-      // nodeData.subMenu.push(node.sub);
-      //  const referenceToNode = this.sideNavMenuData.find((d:any) => d.submenu.level === node.sub.level)
-
       let n = node.item.subMenu
         .map(
           (subm: any, index: number): any => {
@@ -114,22 +109,6 @@ export class DocumentorComponent implements OnInit {
       this.sideNavMenuData.push(header);
       index++;
     });
-
-    //   this.sideNavMenuData.unshift({
-    //    menu: {
-
-    //        heading: "Test",
-    //         html: null,
-    //         description: "Add New Product",
-    //         param: {
-    //           name: "string",
-    //           age: "number",
-    //           gender: "string",
-    //           dob: "string"
-    //         }
-    //  }
-    //   })
-
     this.dataSource.data = this.sideNavMenuData;
   }
 
@@ -139,21 +118,15 @@ export class DocumentorComponent implements OnInit {
     if (option.hasSubMenu == false) {
       this.nodeItem({ header: option.header, level: option.level });
     } else {
-      if (subMenuPos) {
-        this.nodeItem(option.subMenu[subMenuPos]);
-      } else {
-        this.nodeItem(option.subMenu[0]);
-      }
+      if (subMenuPos) this.nodeItem(option.subMenu[subMenuPos]);
+      else this.nodeItem(option.subMenu[0]);
     }
     if (flag == "fromHeader") {
       this.tree.treeControl.collapseAll();
+     if (option.subMenu.length) this.tree.treeControl.expand(option);
+    
 
-      if (option.subMenu.length) {
-        this.tree.treeControl.expand(option);
-      }
     }
-
-    // this.nodeItem({ header: "Dashboard", level: 0 });
   }
   close() {
     this.apiFinder.setValue("");
@@ -175,7 +148,6 @@ export class DocumentorComponent implements OnInit {
       getSubMenuChoosedItem = slicedDocument["menu"]["submenu"].filter(
         (item: any) => {
           let lwCased = item.heading.toLowerCase();
-
           if (lwCased == headerNode) return item;
         }
       );
@@ -184,9 +156,8 @@ export class DocumentorComponent implements OnInit {
     this.selectedOperation = headerNode;
     this.getSubMenuChoosedItem = {};
     this.getSubMenuChoosedItem["docSet"] = slicedDocument;
-    //  this.getSubMenuChoosedItem['nodeDetail'] = node;
-
     if (this.sideNavMenuData[level]["hasSubMenu"] == true) {
+  
       this.getSubMenuChoosedItem["choosen"] = getSubMenuChoosedItem;
     }
     if (this.sideNavMenuData[level]["hasSubMenu"] == false) {

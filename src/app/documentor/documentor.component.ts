@@ -54,7 +54,8 @@ export class DocumentorComponent implements OnInit {
     this.createSideNav();
   }
   ngOnInit() {
-    this.nodeItem({ header: "Dashboard", level: 0 });
+    // this.nodeItem({ header: "Dashboard", level: 0 });
+    this.nodeItem({header: "Add", level: 1});
     this.filteredOptions = this.apiFinder.valueChanges.pipe(
       startWith(""),
       map(value => {
@@ -131,6 +132,10 @@ export class DocumentorComponent implements OnInit {
   close() {
     this.apiFinder.setValue("");
   }
+  routeToHome(flag:any){
+    if(flag == true)this.nodeItem({ header: "Dashboard", level: 0 });
+  }
+
   nodeItem(node: any) {
     this.dashboard = false;
     if (node.header.toLowerCase() == "dashboard") {
@@ -163,5 +168,6 @@ export class DocumentorComponent implements OnInit {
     if (this.sideNavMenuData[level]["hasSubMenu"] == false) {
       this.getSubMenuChoosedItem["choosen"] = [slicedDocument.menu];
     }
+    
   }
 }

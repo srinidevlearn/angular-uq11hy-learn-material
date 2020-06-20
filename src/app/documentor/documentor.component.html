@@ -94,7 +94,7 @@
 
 			<ng-container *ngIf="dashboard == false">
 
-				<app-documentation [getDocData]="getSubMenuChoosedItem"></app-documentation>
+				<app-documentation [getDocData]="getSubMenuChoosedItem" (routedToHome)="routeToHome($event)"></app-documentation>
 
 			</ng-container>
 
